@@ -2,12 +2,14 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-// Import routesów
+// Import routes
 const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const accountRoutes = require('./routes/accountRoutes');
 const transactionRoutes = require('./routes/transactionRoutes');
 const userRoutes = require('./routes/userRoutes');
+const exchangeRoutes = require('./routes/exchange');
+const mailRoutes = require('./routes/mail');    // <--- DODAJ TO!
 
 const app = express();
 
@@ -45,6 +47,8 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/user', userRoutes);
+app.use('/', exchangeRoutes);
+app.use('/', mailRoutes);   // <--- DODAJ TO!
 
 // Health check endpoint
 app.get('/health', (req, res) => {
